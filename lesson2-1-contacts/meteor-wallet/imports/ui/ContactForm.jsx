@@ -1,20 +1,21 @@
-import React from "react";
-import {ContactsCollection} from "../api/ContactsCollection";
+import React, { useState } from 'react';
+import { ContactsCollection } from '../api/ContactsCollection';
 
 export const ContactForm = () => {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [imageUrl, setImageUrl] = React.useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   const saveContact = () => {
-    ContactsCollection.insert({ name, email, imageUrl });
-    setName("");
-    setEmail("");
-    setImageUrl("");
-  }
+    console.log({ name, email, imageUrl });
+    ContactsCollection.insert({ name, email, imageUrl })
+    setName('' );
+    setEmail('');
+    setImageUrl('');
+  };
 
   return (
-    <form>
+    <form action="">
       <div>
         <label htmlFor="name">
           Name
@@ -23,10 +24,9 @@ export const ContactForm = () => {
           type="text"
           id="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
         />
       </div>
-
       <div>
         <label htmlFor="email">
           Email
@@ -35,10 +35,9 @@ export const ContactForm = () => {
           type="email"
           id="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
         />
       </div>
-
       <div>
         <label htmlFor="imageUrl">
           Image URL
@@ -47,17 +46,12 @@ export const ContactForm = () => {
           type="text"
           id="imageUrl"
           value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          onChange={e => setImageUrl(e.target.value)}
         />
       </div>
       <div>
-        <button
-          type="button"
-          onClick={saveContact}
-        >
-          Save Contact
-        </button>
+        <button type="button" onClick={saveContact}>Save Contact</button>
       </div>
     </form>
-  )
-}
+  );
+};
